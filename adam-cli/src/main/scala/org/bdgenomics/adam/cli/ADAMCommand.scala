@@ -57,6 +57,7 @@ trait ADAMSparkCommand[A <: Args4jBase] extends ADAMCommand with Logging {
     run(sc, job)
     val totalTime = System.nanoTime() - start
     printMetrics(totalTime, metricsListener)
+    sc.stop()
   }
 
   def initializeMetrics(sc: SparkContext): Option[MetricsListener] = {
